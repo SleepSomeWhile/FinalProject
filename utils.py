@@ -6,7 +6,7 @@ from sklearn.metrics import (
 )
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-RESULTS_PATH = os.path.join(PROJECT_ROOT, "results.csv")
+RESULTS_PATH = "../results.csv"
 
 def log_result(model_name, y_true, y_proba, y_pred, params=None, notes=""):
     """Сохраняет метрики модели в общий results.csv (перезаписывает строку по model_name)."""
@@ -18,7 +18,7 @@ def log_result(model_name, y_true, y_proba, y_pred, params=None, notes=""):
         "f1":        round(f1_score(y_true, y_pred), 4),
         "precision": round(precision_score(y_true, y_pred), 4),
         "recall":    round(recall_score(y_true, y_pred), 4),
-        "params":    json.dumps(params or {}, ensure_ascii=False),
+        "params": repr(params or {}),
         "notes":     notes
     }
     df_new = pd.DataFrame([row])
@@ -34,9 +34,9 @@ def log_result(model_name, y_true, y_proba, y_pred, params=None, notes=""):
     print(f"✓ {model_name}: AUC={row['auc']}, acc={row['accuracy']} → {RESULTS_PATH}")
     return row
 
-
-def load_results(sort_by="auc"):
-    """Читает results.csv и возвращает отсортированную таблицу."""
-    if not os.path.exists(RESULTS_PATH):
-        return pd.DataFrame()
-    return pd.read_csv(RESULTS_PATH).sort_values(sort_by, ascending=False)
+#
+#def load_results(sort_by="auc"):
+#    """Читает results.csv и возвращает отсортированную таблицу."""
+#    if not os.path.exists(RESULTS_PATH):
+#        return pd.DataFrame()
+#    return pd.read_csv(RESULTS_PATH).sort_values(sort_by, ascending=False)
