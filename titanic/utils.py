@@ -6,7 +6,7 @@ from sklearn.metrics import (
 )
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-RESULTS_PATH = "../results.csv"
+RESULTS_PATH = "results.csv"
 
 def log_result(model_name, y_true, y_proba, y_pred, params=None, notes=""):
     """Сохраняет метрики модели в общий results.csv (перезаписывает строку по model_name)."""

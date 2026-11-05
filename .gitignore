@@ -1,2 +1,4 @@
 titanic/notebooks/catboost_info
+house-prices/notebooks/catboost_info
 titanic/__pycache__
+house-prices/__pycache__
